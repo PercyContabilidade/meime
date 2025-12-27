@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título da Página -->
+    <title>MEI ou ME? | Percy Contabilidade</title>
+    
+    <!-- META TAGS PARA WHATSAPP E INSTAGRAM (Otimização de Compartilhamento) -->
+    <meta property="og:title" content="Cheguei, Sou MEI? Descubra o ideal para você.">
+    <meta property="og:description" content="Simulador gratuito: Compare impostos, limites e descubra se vale a pena ser MEI ou migrar para ME. Ferramenta exclusiva Percy Contabilidade.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Percy Contabilidade - Negócios Inteligentes">
+    <!-- Cor da barra do navegador no mobile -->
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Tailwind CSS (Estilos) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Fonte Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .slide-container { position: relative; width: 100%; }
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #d1d5db;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+        }
+        .slider:hover { opacity: 1; }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #059669; /* Emerald 600 */
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(5, 150, 105, 0.5);
+        }
+        /* Animações suaves */
+        .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navegação -->
+    <nav class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="bg-emerald-500 p-2 rounded-lg">
+                        <i data-lucide="briefcase" class="h-6 w-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold leading-tight">Percy Contabilidade</h1>
+                        <p class="text-xs text-emerald-400 font-medium tracking-wider">NEGÓCIOS INTELIGENTES</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#simulator" class="hover:text-emerald-400 transition-colors font-medium">Simulador</a>
+                    <a href="#comparison" class="hover:text-emerald-400 transition-colors font-medium">Comparativo</a>
+                    <a href="https://wa.me/5521999999999" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-all shadow-lg shadow-emerald-900/20">
+                        <i data-lucide="phone" class="w-4 h-4"></i> Falar no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="bg-slate-900 text-white pt-12 pb-24 relative overflow-hidden">
+        <!-- Elemento decorativo de fundo -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-emerald-500/10 skew-x-12 transform origin-top-right pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/20 text-emerald-300 text-sm font-semibold mb-6 border border-emerald-500/30">
+                Projeto Cheguei, Sou MEI
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">
+                MEI ou ME?<br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
+                    Descubra o ideal para você.
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                A ferramenta oficial da Percy Contabilidade para calcular impostos, entender limites e decidir o futuro do seu negócio.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="document.getElementById('simulator').scrollIntoView({ behavior: 'smooth' })" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold shadow-lg shadow-emerald-500/30 flex items-center justify-center gap-2 transition-all transform hover:-translate-y-1">
+                    <i data-lucide="calculator" class="w-5 h-5"></i> Simular Custos Agora
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Simulador -->
+    <section id="simulator" class="max-w-5xl mx-auto px-4 -mt-16 relative z-20 mb-20">
+        <div class="bg-white rounded-xl shadow-xl border-t-4 border-emerald-500 p-6 md:p-8">
+            <div class="flex flex-col md:flex-row gap-8">
+                
+                <!-- Controles -->
+                <div class="md:w-1/3 space-y-6">
+                    <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <i data-lucide="calculator" class="text-emerald-600"></i> Seus Dados
+                    </h3>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Faturamento Mensal Estimado</label>
+                        <div class="relative mb-3">
+                            <span class="absolute left-3 top-3 text-slate-400 font-medium">R$</span>
+                            <input type="number" id="revenueInput" value="5000" class="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-lg font-bold text-slate-800 bg-slate-50 transition-all">
+                        </div>
+                        <input type="range" id="revenueSlider" min="0" max="15000" step="100" value="5000" class="slider">
+                        <div class="flex justify-between text-xs text-slate-400 mt-1 font-medium">
+                            <span>R$ 0</span>
+                            <span>R$ 15.000+</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Número de Funcionários</label>
+                        <div class="flex items-center gap-4 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                            <button onclick="updateEmployees(-1)" class="w-10 h-10 bg-white rounded shadow text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 font-bold text-xl transition-colors">-</button>
+                            <span id="employeeCount" class="text-xl font-bold w-8 text-center text-slate-800">0</span>
+                            <button onclick="updateEmployees(1)" class="w-10 h-10 bg-white rounded shadow text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 font-bold text-xl transition-colors">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultados -->
+                <div class="md:w-2/3 bg-slate-50 rounded-xl p-6 border border-slate-200 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <i data-lucide="trending-up" class="w-24 h-24 text-slate-900"></i>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="bar-chart-3" class="w-5 h-5 text-slate-500"></i> Análise Financeira
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+                        
+                        <!-- Card MEI -->
+                        <div id="meiCard" class="p-4 rounded-lg border-2 bg-white transition-all duration-300 shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-slate-800">Opção MEI</h4>
+                                <span id="meiBadge" class="text-xs px-2 py-1 rounded-full font-bold"></span>
+                            </div>
+                            
+                            <div id="meiContent">
+                                <!-- Conteúdo dinâmico via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Card ME -->
+                        <div class="p-4 rounded-lg border-2 border-slate-200 bg-white shadow-md ring-1 ring-emerald-500 ring-offset-2 relative">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-slate-800">Opção ME</h4>
+                                <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full font-bold">RECOMENDADO</span>
+                            </div>
+                            
+                            <div class="text-3xl font-bold text-slate-800 mb-1">
+                                <span id="meTotal">R$ 0,00</span>
+                                <span class="text-xs font-normal text-slate-500 ml-1">/mês*</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-4 font-medium">Estimativa (Imposto + Contador)</p>
+
+                            <div class="bg-slate-100 p-3 rounded-lg text-xs space-y-2 mb-3 border border-slate-200">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-600">Imposto (Simples ~6%):</span>
+                                    <span id="meTax" class="font-bold text-slate-800">R$ 0,00</span>
+                                </div>
+                                <div class="flex justify-between text-slate-500">
+                                    <span>Contabilidade (Est.):</span>
+                                    <span>R$ 450,00</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 italic leading-tight">*Valores estimados para Serviços (Anexo III). Consulte a Percy para cálculo exato.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparativo -->
+    <section id="comparison" class="max-w-7xl mx-auto px-4 pb-24">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Diferenças Cruciais</h2>
+            <p class="text-slate-600 mt-2">Entenda porque a estrutura jurídica certa economiza dinheiro.</p>
+            
+            <!-- Toggle View -->
+            <div class="flex justify-center mt-6">
+                <div class="bg-slate-200 p-1 rounded-lg flex shadow-inner">
+                    <button onclick="switchView('table')" id="btnTable" class="px-4 py-2 rounded-md flex items-center gap-2 text-sm font-bold transition-all bg-white text-emerald-600 shadow-sm">
+                        <i data-lucide="layout-list" class="w-4 h-4"></i> Tabela
+                    </button>
+                    <button onclick="switchView('cards')" id="btnCards" class="px-4 py-2 rounded-md flex items-center gap-2 text-sm font-bold transition-all text-slate-500 hover:text-emerald-600">
+                        <i data-lucide="layout-grid" class="w-4 h-4"></i> Cards
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela View -->
+        <div id="tableView" class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-100 animate-fade-in">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-white">
+                            <th class="p-4 font-semibold w-1/3 uppercase text-xs tracking-wider">Critério</th>
+                            <th class="p-4 font-semibold w-1/3 bg-slate-800 uppercase text-xs tracking-wider">MEI</th>
+                            <th class="p-4 font-semibold w-1/3 uppercase text-xs tracking-wider text-emerald-300">ME (Simples Nacional)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100" id="tableBody">
+                        <!-- Linhas geradas via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Cards View -->
+        <div id="cardsView" class="hidden grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
+            <!-- Cards gerados via JS -->
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="bg-slate-900 text-white py-20 px-4 relative overflow-hidden">
+        <!-- Elemento decorativo -->
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-500"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ainda com medo da Receita Federal?</h2>
+            <p class="text-xl text-slate-300 mb-10 leading-relaxed">
+                Cafter Percy e a equipe da Percy Contabilidade podem blindar seu patrimônio. 
+                Não deixe para depois.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://wa.me/5521999999999" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-transform transform hover:scale-105">
+                    Agendar Mentoria Agora <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 px-4 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <i data-lucide="briefcase" class="h-5 w-5 text-emerald-500"></i>
+                    <span class="text-white font-bold text-lg">Percy Contabilidade</span>
+                </div>
+                <p class="text-sm text-slate-500">Negócios Inteligentes. Teologia & Empreendedorismo.</p>
+            </div>
+            <div class="text-sm text-center md:text-right">
+                <p>© 2024 Percy Contabilidade. Todos os direitos reservados.</p>
+                <p class="mt-1 flex items-center justify-center md:justify-end gap-1">
+                    <i data-lucide="map-pin" class="w-3 h-3"></i> Nova Iguaçu, RJ - Brasil
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts da Aplicação -->
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+
+        // Estado
+        let revenue = 5000;
+        let employees = 0;
+        
+        // Dados de Comparação
+        const comparisonData = [
+            { id: 1, feature: "Limite de Faturamento", mei: "R$ 81.000,00/ano", me: "Até R$ 4,8 Milhões", icon: "dollar-sign", details: "MEI tem teto baixo. Acima de R$ 6.750/mês, a ME é obrigatória." },
+            { id: 2, feature: "Impostos", mei: "Fixo (~R$ 75,00)", me: "Variável (a partir de 6%)", icon: "file-text", details: "MEI paga o mesmo valor sempre. ME paga proporcional ao faturamento no Anexo III." },
+            { id: 3, feature: "Funcionários", mei: "Máximo 1", me: "Sem limite fixo", icon: "users", details: "Para crescer a equipe, você precisa migrar para ME." },
+            { id: 4, feature: "Contador", mei: "Opcional", me: "Obrigatório por Lei", icon: "briefcase", details: "A Percy Contabilidade cuida de toda a burocracia da sua ME." },
+            { id: 5, feature: "Atividades", mei: "Limitadas (Lista)", me: "Abrangente (Intelectuais)", icon: "check-circle", details: "Médicos, advogados, programadores e consultores geralmente devem ser ME." }
+        ];
+
+        // Elementos DOM
+        const revenueInput = document.getElementById('revenueInput');
+        const revenueSlider = document.getElementById('revenueSlider');
+        const employeeCount = document.getElementById('employeeCount');
+        const meiCard = document.getElementById('meiCard');
+        const meiBadge = document.getElementById('meiBadge');
+        const meiContent = document.getElementById('meiContent');
+        const meTotal = document.getElementById('meTotal');
+        const meTax = document.getElementById('meTax');
+
+        // Formatador de Moeda
+        const formatCurrency = (val) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+
+        // Lógica de Cálculo
+        function calculate() {
+            // Sincronizar inputs
+            revenueInput.value = revenue;
+            revenueSlider.value = revenue;
+            employeeCount.textContent = employees;
+
+            const yearlyRevenue = revenue * 12;
+            const isMeiEligible = yearlyRevenue <= 81000 && employees <= 1;
+            
+            // Cálculos ME
+            // Estimativa simples de 6% (Anexo III)
+            const meTaxVal = revenue * 0.06;
+            const meTotalVal = meTaxVal + 450; // + honorários estimados
+
+            // Atualizar UI ME
+            meTax.textContent = formatCurrency(meTaxVal);
+            meTotal.textContent = formatCurrency(meTotalVal);
+
+            // Atualizar UI MEI
+            if (isMeiEligible) {
+                meiCard.className = "p-4 rounded-lg border-2 bg-white border-emerald-200 transition-all duration-300 shadow-sm";
+                meiBadge.className = "bg-emerald-100 text-emerald-700 text-xs px-2 py-1 rounded-full font-bold";
+                meiBadge.textContent = "ELEGÍVEL";
+                meiContent.innerHTML = `
+                    <div class="text-3xl font-bold text-slate-800 mb-1">
+                        ~R$ 75,00<span class="text-xs font-normal text-slate-500 ml-1">/mês</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-4 font-medium">Custo fixo (DAS)</p>
+                    <ul class="text-xs space-y-2 text-slate-600">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> Baixa burocracia</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> Sem contador obrigatório</li>
+                    </ul>
+                `;
+            } else {
+                meiCard.className = "p-4 rounded-lg border-2 bg-red-50 border-red-100 opacity-70 transition-all duration-300";
+                meiBadge.className = "bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full font-bold";
+                meiBadge.textContent = "INAPTO";
+                meiContent.innerHTML = `
+                    <div class="text-center py-6">
+                        <i data-lucide="alert-triangle" class="w-10 h-10 text-red-400 mx-auto mb-3"></i>
+                        <p class="text-sm text-red-700 font-bold mb-1">
+                            ${yearlyRevenue > 81000 ? "Faturamento excede 81k/ano" : "Máximo de 1 funcionário"}
+                        </p>
+                        <p class="text-xs text-slate-500">Migração para ME recomendada.</p>
+                    </div>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        // Event Listeners
+        revenueInput.addEventListener('input', (e) => { revenue = Number(e.target.value); calculate(); });
+        revenueSlider.addEventListener('input', (e) => { revenue = Number(e.target.value); calculate(); });
+        
+        function updateEmployees(change) {
+            employees = Math.max(0, employees + change);
+            calculate();
+        }
+
+        // Renderização da Tabela/Cards
+        function renderComparison() {
+            const tbody = document.getElementById('tableBody');
+            const cardsContainer = document.getElementById('cardsView');
+            
+            // Render Tabela
+            tbody.innerHTML = comparisonData.map(row => `
+                <tr class="hover:bg-slate-50 transition-colors cursor-pointer group border-b border-slate-50" onclick="toggleDetails(${row.id})">
+                    <td class="p-4 font-bold text-slate-700 flex items-center gap-3">
+                        <div class="p-1.5 bg-slate-100 rounded text-emerald-600 group-hover:bg-emerald-100 transition-colors">
+                            <i data-lucide="${row.icon}" class="w-4 h-4"></i>
+                        </div>
+                        ${row.feature}
+                        <i data-lucide="chevron-down" class="w-3 h-3 text-slate-300 group-hover:text-emerald-500 ml-auto transition-transform" id="icon-${row.id}"></i>
+                    </td>
+                    <td class="p-4 text-slate-600 border-l border-slate-100 text-sm">${row.mei}</td>
+                    <td class="p-4 text-slate-600 font-bold text-emerald-700 border-l border-slate-100 text-sm">${row.me}</td>
+                </tr>
+                <tr id="details-${row.id}" class="hidden bg-emerald-50/50 border-b border-emerald-100">
+                    <td colSpan="3" class="p-4 text-sm text-slate-600 border-t border-slate-100">
+                        <div class="flex gap-3 items-start">
+                            <i data-lucide="info" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">${row.details}</span>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Render Cards
+            cardsContainer.innerHTML = comparisonData.map(item => `
+                <div class="bg-white rounded-xl shadow-lg border border-slate-100 p-6 hover:shadow-xl transition-shadow border-t-4 border-t-emerald-500 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-emerald-100 rounded-lg">
+                            <i data-lucide="${item.icon}" class="w-6 h-6 text-emerald-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-800">${item.feature}</h3>
+                    </div>
+                    <div class="space-y-4 flex-grow">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">No MEI</p>
+                            <p class="text-slate-700 font-medium">${item.mei}</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100">
+                            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Na ME</p>
+                            <p class="text-emerald-700 font-bold">${item.me}</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-100 text-sm text-slate-500 leading-relaxed">
+                        ${item.details}
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
+
+        function toggleDetails(id) {
+            const el = document.getElementById(`details-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            // Toggle visibility
+            el.classList.toggle('hidden');
+            
+            // Rotate icon (simples visual cue)
+            if (el.classList.contains('hidden')) {
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function switchView(mode) {
+            const tableView = document.getElementById('tableView');
+            const cardsView = document.getElementById('cardsView');
+            const btnTable = document.getElementById('btnTable');
+            const btnCards = document.getElementById('btnCards');
+
+            if (mode === 'table') {
+                tableView.classList.remove('hidden');
+                cardsView.classList.add('hidden');
+                btnTable.className = "px-4 py-2 rounded-md flex items-center gap-2 text-sm font-bold transition-all bg-white text-emerald-600 shadow-sm";
+                btnCards.className = "px-4 py-2 rounded-md flex items-center gap-2 text-sm font-bold transition-all text-slate-500 hover:text-emerald-600";
+            } else {
+                tableView.classList.add('hidden');
+                cardsView.classList.remove('hidden');
+                btnTable.className = "px-4 py-2 rounded-md flex items-center gap-2 text-sm font-bold transition-all text-slate-500 hover:text-emerald-600";
+                btnCards.className = "px-4 py-2 rounded-md flex items-center gap-2 text-sm font-bold transition-all bg-white text-emerald-600 shadow-sm";
+            }
+        }
+
+        // Inicialização
+        calculate();
+        renderComparison();
+
+    </script>
+</body>
+</html>
